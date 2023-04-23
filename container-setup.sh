@@ -43,6 +43,12 @@ services:
       replicas: 3
     ports:
       - 3000
+    healthcheck:
+      test: curl --fail http://localhost:49153 && curl --fail http://localhost:49154 && curl --fail http://localhost:49155 || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 EOF
 chown ec2-user:ec2-user /home/ec2-user/docker-compose.yml
 sudo /usr/local/bin/docker-compose -f /home/ec2-user/docker-compose.yml up -d

@@ -1,3 +1,7 @@
+data "http" "myip" {
+  url = "http://ipv4.icanhazip.com"
+}
+
 # Create a Security Group for the Porttutorial instance, so that anyone in the outside world can access the instance by HTTP, PING, SSH
 resource "aws_security_group" "sg-ec2" {
   depends_on = [
@@ -38,6 +42,13 @@ resource "aws_security_group" "sg-ec2" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+  from_port = 8080
+  to_port = 8080
+  protocol = "tcp"
+  cidr_blocks = ["${chomp(data.http.myip.body)}/32"]
   }
 
   # Outward Network Traffic from the Porttutorial webserver
