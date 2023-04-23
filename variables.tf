@@ -32,3 +32,8 @@ variable "instance_type" {
   description = "Instance type to use for the instance. "
   type        = string
 }
+
+variable "ec2_ports" {
+  description = "Container ports on ec2"
+  type        = list(string)
+}

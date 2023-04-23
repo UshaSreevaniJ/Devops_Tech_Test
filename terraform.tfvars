@@ -11,3 +11,5 @@ az_public            = ["eu-west-1a","eu-west-1b"]
 ami           = "ami-09dd5f12915cfb387"
 
 instance_type = "t2.micro"
+
+ec2_ports = ["49153","49154","49155"]
