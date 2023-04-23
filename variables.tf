@@ -21,3 +21,14 @@ variable "az_public" {
   description = "AZ of this subnet"
   type        = list(string)
 }
+
+
+variable "ami" {
+  description = "AMI to use for the instance"
+  type        = string
+}
+
+variable "instance_type" {
+  description = "Instance type to use for the instance. "
+  type        = string
+}
